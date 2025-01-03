@@ -87,4 +87,11 @@ public class Hospital implements  PatientCollection, DoctorPatientMap{
         }
 
     }
+
+    public List<Patient> sortPatientsByName()
+    {
+        //Lambda Func as a comparator
+        patients.sort((d1, d2)-> d1.getName().compareTo(d2.getName()));
+        return patients;
+    }
 }

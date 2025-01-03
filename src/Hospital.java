@@ -1,5 +1,6 @@
 import lombok.*;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 @Data
@@ -94,4 +95,65 @@ public class Hospital implements  PatientCollection, DoctorPatientMap{
         patients.sort((d1, d2)-> d1.getName().compareTo(d2.getName()));
         return patients;
     }
+
+    public List<Patient> searchPatientsByName(String name)
+    {
+        ArrayList<Patient> res = new ArrayList<>();
+        for(Patient p: patients)
+            if(p.getName().contains(name))
+                res.add(p);
+        return res;
+    }
+
+    public List<Doctor> searchDoctorsByName(String name)
+    {
+        ArrayList<Doctor> res = new ArrayList<>();
+        for(Doctor p: doctorPatientMap.keySet())
+            if(p.getName().contains(name))
+                res.add(p);
+        return res;
+    }
+
+    public List<Doctor> searchDoctorsByAddress(String address)
+    {
+        ArrayList<Doctor> res = new ArrayList<>();
+        for(Doctor p: doctorPatientMap.keySet())
+            if(p.getAddress().contains(address))
+                res.add(p);
+        return res;
+    }
+
+    public List<Patient> searchPatientsByAddress(String address)
+    {
+        ArrayList<Patient> res = new ArrayList<>();
+        for(Patient p: patients)
+            if(p.getAddress().contains(address))
+                res.add(p);
+        return res;
+    }
+
+    public void reportStat()
+    {
+        for(Doctor d: doctorPatientMap.keySet())
+        {
+            int nbPatients = doctorPatientMap.get(d).size();
+            if(nbPatients>0)
+                System.out.println("Doctor "+d.getName()+" has "+nbPatients+" patients");
+            else
+                System.out.println("Doctor "+d.getName()+" has no patients");
+        }
+        Map<String, Integer> ailmentsFreq = new HashMap<>();
+        for (Patient p: patients)
+        {
+            if(p.getAilment()!=null)
+                ailmentsFreq.put(p.getAilment(), ailmentsFreq.getOrDefault(p.getAilment(), 0)+1);
+        }
+        List<String> ailments = new ArrayList<>(ailmentsFreq.keySet());
+        ailments.sort((d1, d2)->ailmentsFreq.get(d2).compareTo(ailmentsFreq.get(d1)));
+        for(String ailment: ailments)
+            System.out.println("Ailment "+ailment+" has "+ailmentsFreq.get(ailment)+" patients");
+
+    }
+
+
 }

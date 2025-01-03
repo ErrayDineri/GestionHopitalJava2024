@@ -12,7 +12,11 @@ public class Doctor extends Person{
     @Override
     public void displayInfo()
     {
-        //A compléter
+        System.out.println("Patient's ID: "+ getId());
+        System.out.println("Patient's Name: "+ getName());
+        System.out.println("Patient's address: "+ getAddress());
+        System.out.println("Patient's SSN: "+ getSpeciality());
+        System.out.println("Patient's ailment: "+getQualifications());
     }
 
 }

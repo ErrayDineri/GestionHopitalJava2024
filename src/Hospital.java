@@ -9,6 +9,24 @@ public class Hospital implements  PatientCollection, DoctorPatientMap{
     private List<Patient> patients = new ArrayList<>();
     private Map<Doctor, Set<Patient>> doctorPatientMap = new HashMap<>();
 
+    static public List<Doctor> getDoctorsBySpecialty(Map<Doctor, Set<Patient>> doctorPatientMap, String specialty)
+    {
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        for(Doctor d: doctorPatientMap.keySet())
+            if (d.getSpeciality().equals(specialty))
+                doctors.add(d);
+        return doctors;
+    }
+
+    static public List<Patient> getPatientByAilment(List<Patient> patients, String ailment)
+    {
+        ArrayList<Patient> patientsRes = new ArrayList<>();
+        for(Patient p: patients)
+            if(p.getAilment().equals(ailment))
+                patientsRes.add(p);
+        return patientsRes;
+    }
+
     @Override
     public void addPatient(Patient patient) {
         patients.add(patient);

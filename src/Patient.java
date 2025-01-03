@@ -1,13 +1,16 @@
 import lombok.*;
 
-import java.sql.SQLOutput;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Patient extends Person implements Comparable<Patient> {
     private int socialSecurityNumber;
     private String ailment;
+    public Patient(int id, String name, String address, int socialSecurityNumber, String ailment) {
+        super(id, name, address);
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.ailment = ailment;
+    }
 
     @Override
     public void displayInfo()

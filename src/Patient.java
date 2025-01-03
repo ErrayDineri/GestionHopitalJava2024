@@ -12,11 +12,11 @@ public class Patient extends Person implements Comparable<Patient> {
     @Override
     public void displayInfo()
     {
-        System.out.println("Patient's ID: "+ getId());
-        System.out.println("Patient's Name: "+ getName());
-        System.out.println("Patient's address: "+ getAddress());
-        System.out.println("Patient's SSN: "+ getSocialSecurityNumber());
-        System.out.println("Patient's ailment: "+getAilment());
+        System.out.println("--------Patient's ID: "+ getId());
+        System.out.println("--------Patient's Name: "+ getName());
+        System.out.println("--------Patient's address: "+ getAddress());
+        System.out.println("--------Patient's SSN: "+ getSocialSecurityNumber());
+        System.out.println("--------Patient's ailment: "+getAilment());
     }
 
     @Override

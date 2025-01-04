@@ -1,8 +1,10 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         Patient patient1 = new Patient(1, "John Doe", "123 Main St", 23, "Flu");
         Patient patient2 = new Patient(2, "Jane Smith", "456 Oak St", 24, "Cough");
         Patient patient3 = new Patient(3, "Alice Johnson", "789 Pine St", 52, "Flu");
@@ -50,5 +52,6 @@ public class Main {
             System.out.println(p.getName());
         }
         hospital.reportStat();
+        hospital.exportHospitalDataInJson();
     }
 }

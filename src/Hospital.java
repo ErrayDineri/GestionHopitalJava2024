@@ -1,6 +1,9 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.*;
 
-import java.sql.SQLOutput;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.util.*;
 
 @Data
@@ -134,6 +137,7 @@ public class Hospital implements  PatientCollection, DoctorPatientMap{
 
     public void reportStat()
     {
+        System.out.println("--------------Stats:");
         for(Doctor d: doctorPatientMap.keySet())
         {
             int nbPatients = doctorPatientMap.get(d).size();
@@ -155,5 +159,11 @@ public class Hospital implements  PatientCollection, DoctorPatientMap{
 
     }
 
+    public void exportHospitalDataInJson() throws JsonProcessingException {
+        System.out.println("-------------EXPORTED:");
+        ObjectMapper objectMapper = new ObjectMapper();
+            String hospitalJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+            System.out.println(hospitalJson);
+    }
 
 }
